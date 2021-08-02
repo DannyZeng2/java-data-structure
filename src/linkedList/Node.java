@@ -54,7 +54,7 @@ public class Node {
         }
     }
 
-    public void deleteNext(Node node) {
+    public void deleteNext() {
         Node newNext = next.next;
         this.next=newNext;
     }

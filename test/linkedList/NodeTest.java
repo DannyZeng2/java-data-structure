@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class NodeTest {
 
     @Test
-    public void test_append() {
+    public void append() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -19,7 +19,7 @@ public class NodeTest {
     }
 
     @Test
-    public void test_pop() {
+    public void pop() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -31,7 +31,7 @@ public class NodeTest {
     }
 
     @Test
-    public void test_insert() {
+    public void insert() {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -43,8 +43,4 @@ public class NodeTest {
         node1.show();
 
     }
-
-
-
-
 }

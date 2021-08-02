@@ -6,7 +6,7 @@ import org.junit.Test;
 public class MyStackTest {
 
     @Test
-    public void test_push() {
+    public void push() {
         MyStack myStack = new MyStack();
         myStack.push(1);
         myStack.push(5);
@@ -15,7 +15,7 @@ public class MyStackTest {
     }
 
     @Test
-    public void test_pop() {
+    public void pop() {
         MyStack myStack = new MyStack();
         myStack.push(1);
         myStack.push(5);

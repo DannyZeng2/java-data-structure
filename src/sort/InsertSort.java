@@ -3,17 +3,14 @@ package sort;
 public class InsertSort {
 
     public static void sort(int[] nums) {
-
         for (int i = 1; i < nums.length; i++) {
-            for (int j = i-1; j > 0; j--) {
-                int base = nums[i];
-                if(nums[i] < nums[j]) {
-                    int temp = nums[j];
-                    nums[j+1] = temp;
-                }else {
-                    nums[j] = base;
-                    break;
+            if(nums[i] < nums[i-1]){
+                int temp = nums[i];
+                int j;
+                for (j = i-1; j >=0&&temp<nums[j]; j--) {
+                    nums[j+1] = nums[j];
                 }
+                nums[j+1] = temp;
             }
         }
 

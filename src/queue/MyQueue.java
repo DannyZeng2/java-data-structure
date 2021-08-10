@@ -38,4 +38,14 @@ public class MyQueue {
     public String show() {
         return Arrays.toString(arr);
     }
+
+    public boolean isEmpty() {
+        return arr.length == 0;
+    }
+
+    public boolean isNotEmpty() {
+        return arr.length > 0;
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package sort;
 
+import queue.MyQueue;
+
 public class RadixQueueSort {
 
     public static void sort(int[] arr)  {
@@ -11,24 +13,22 @@ public class RadixQueueSort {
         }
         
         int maxLength = (max  +"").length();
-        int[][] temp = new int[10][arr.length];
+        MyQueue[] temp = new MyQueue[10];
+        for (int i = 0; i < 10; i++) {
+            temp[i] = new MyQueue();
+        }
         for (int i = 0,n=1; i < maxLength; i++,n*=10) {
-            int[] count = new int[10];
             for (int j = 0; j < arr.length; j++) {
                 int digit = arr[j]/n %10;
-                temp[digit][count[digit]] = arr[j];
-                count[digit]++;
+                temp[digit].add(arr[j]);
             }
-
 
             int index = 0;
 
-            for (int k=0;k<count.length;k++) {
-                if(count[k]!=0) {
-                    for (int m=0;m<count[k];m++) {
-                        arr[index] = temp[k][m];
-                        index++;
-                    }
+            for (int k=0;k<temp.length;k++) {
+                while (temp[k].isNotEmpty()) {
+                    arr[index] = temp[k].poll();
+                    index++;
                 }
             }
         }

@@ -37,5 +37,9 @@ public class BinaryTreeTest {
         System.out.println("=== 后序遍历 ===");
         binaryTree.lrdPrint();
 
+        System.out.println(binaryTree.vlrSearch(3));
+        System.out.println(binaryTree.vlrSearch(9));
+
+
     }
 }

@@ -46,7 +46,7 @@ public class TreeNode {
         }
     }
 
-    // inorder Traversal (LDR)
+    // 中序遍历 Inorder Traversal (LDR)
     public void ldrPrint() {
         if( leftChild!= null) {
             leftChild.lrdPrint();
@@ -66,5 +66,26 @@ public class TreeNode {
             rightChild.lrdPrint();
         }
         System.out.println(value);
+    }
+
+    public TreeNode vlrSearch(int val) {
+        TreeNode target = null;
+        if(this.value == val){
+            return this;
+        }
+        if(leftChild != null) {
+            target = leftChild.vlrSearch(val);
+        }
+        if(target != null) {
+            return target;
+        }
+        if(rightChild != null) {
+            target = rightChild.vlrSearch(val);
+        }
+        if(target != null) {
+            return target;
+        }
+        return target;
+
     }
 }

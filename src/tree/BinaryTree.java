@@ -23,5 +23,9 @@ public class BinaryTree {
     public void lrdPrint() {
         root.lrdPrint();
     }
+
+    public TreeNode vlrSearch(int val) {
+        return root.vlrSearch(val);
+    }
 }
 

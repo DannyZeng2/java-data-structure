@@ -16,6 +16,23 @@ public class ThreadedBinaryTree {
         this.root = root;
     }
 
+    public void threadedPrint() {
+        ThreadedTreeNode node = root;
+        while (node !=null) {
+            while(node.getLeftType() == 0) {
+                node= node.getLeftChild();
+            }
+            System.out.println(node.getValue());
+
+            while(node.getRightType() == 1) {
+                node = node.getRightChild();
+                System.out.println(node.getValue());
+            }
+            node = node.getRightChild();
+        }
+    }
+
+
     // 中序线索化二叉树
     public void threadedNode() {
         threadedNode(root);

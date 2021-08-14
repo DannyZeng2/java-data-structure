@@ -37,9 +37,11 @@ public class ThreadedBinaryTreeTest {
         binaryTree.lrdPrint();
 
         binaryTree.threadedNode();
-       //ThreadedTreeNode node = binaryTree.vlrSearch(5);
-        System.out.println("===========");
 
+        System.out.println("== 以线索方式中序遍历 ==");
+        binaryTree.threadedPrint();
+
+        System.out.println("========");
         System.out.println(node5.getLeftChild().getValue());
         System.out.println(node5.getRightChild().getValue());
     }

@@ -1,4 +1,4 @@
-package tree;
+package tree.node;
 
 public class TreeNode {
     private int value;

@@ -1,5 +1,7 @@
 package tree;
 
+import tree.node.TreeNode;
+
 public class BinaryTree {
 
     private TreeNode root;

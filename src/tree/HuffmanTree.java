@@ -20,16 +20,15 @@ public class HuffmanTree {
 
         while(treeNodes.size()>1) {
             Collections.sort(treeNodes);
-            TreeNode leftNode = treeNodes.get(0);
-            TreeNode rightNode = treeNodes.get(1);
+            TreeNode leftNode = treeNodes.get(treeNodes.size() - 1);
+            TreeNode rightNode = treeNodes.get(treeNodes.size() - 2);
 
-            TreeNode newNode = new TreeNode(leftNode.getValue() +rightNode.getValue());
-            newNode.setLeftChild(leftNode);;
+            TreeNode newNode = new TreeNode(leftNode.getValue() + rightNode.getValue());
+            newNode.setLeftChild(leftNode);
             newNode.setRightChild(rightNode);
             treeNodes.remove(leftNode);
             treeNodes.remove(rightNode);
             treeNodes.add(newNode);
-
         }
 
         return treeNodes.get(0);

@@ -91,7 +91,7 @@ public class TreeNode implements Comparable<TreeNode> {
 
     @Override
     public int compareTo(TreeNode o) {
-        return this.getValue() - o.getValue();
+        return o.getValue() - this.getValue();
     }
 
     @Override

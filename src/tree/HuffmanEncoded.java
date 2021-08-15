@@ -12,7 +12,7 @@ public class HuffmanEncoded {
 
     private static Map<Byte, String> huffCodeMaps = new HashMap<>();
 
-    public static String huffmanZipEncoded(String msg) {
+    public static byte[] huffmanZipEncoded(String msg) {
         // 将每个字符转成字节码并创建节点
         List<HuffmanEncodedNode> nodes = buildNodes(msg);
         // 创建哈夫曼树
@@ -20,7 +20,7 @@ public class HuffmanEncoded {
         // 创建哈夫曼编码表
         Map<Byte, String> huffCodes = createHuffmanCodes(tree);
         // 编码表对字符串进行编码
-        String msgCode = encode(getBytesByString(msg), huffCodes);
+        byte[] msgCode = encode(getBytesByString(msg), huffCodes);
 
         System.out.println("字符串转字节码数组：" + getBytesByString(msg));
         System.out.println("编码表：" + huffCodes);
@@ -28,12 +28,33 @@ public class HuffmanEncoded {
         return msgCode;
     }
 
-    private static String encode(List<Byte> bytes, Map<Byte, String> huffCodes) {
+    private static byte[] encode(List<Byte> bytes, Map<Byte, String> huffCodes) {
         StringBuilder sb = new StringBuilder();
         bytes.forEach(v -> {
             sb.append(huffCodes.get(v));
         });
-        return sb.toString();
+        int len;
+        if(sb.length()%8 == 0) {
+            len = sb.length()/8;
+        }else{
+            len = sb.length()/8 + 1;
+        }
+        byte[] byteArray = new byte[len];
+
+        for (int i = 0, idx = 0; i < sb.length(); i+=8, idx++) {
+            String byteStr;
+            if(i+8>sb.length()) {
+                byteStr = sb.substring(i);
+            }else {
+                byteStr = sb.substring(i,i+8);
+            }
+            byteArray[idx] = (byte) Integer.parseInt(byteStr,2);
+        }
+
+//        for (int i = 0; i < byteArray.length; i++) {
+//            System.out.println(byteArray[i]);
+//        }
+        return byteArray;
     }
 
     private static Map<Byte, String> createHuffmanCodes(HuffmanEncodedNode tree) {

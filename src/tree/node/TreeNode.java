@@ -1,6 +1,6 @@
 package tree.node;
 
-public class TreeNode {
+public class TreeNode implements Comparable<TreeNode> {
     private int value;
 
     private TreeNode leftChild;
@@ -49,11 +49,11 @@ public class TreeNode {
     // 中序遍历 Inorder Traversal (LDR)
     public void ldrPrint() {
         if( leftChild!= null) {
-            leftChild.lrdPrint();
+            leftChild.ldrPrint();
         }
         System.out.println(value);
         if( rightChild!= null) {
-            rightChild.lrdPrint();
+            rightChild.ldrPrint();
         }
     }
 
@@ -87,5 +87,17 @@ public class TreeNode {
         }
         return target;
 
+    }
+
+    @Override
+    public int compareTo(TreeNode o) {
+        return this.getValue() - o.getValue();
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "value=" + value +
+                '}';
     }
 }

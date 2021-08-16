@@ -18,15 +18,62 @@ public class HuffmanEncoded {
         // 创建哈夫曼树
         HuffmanEncodedNode tree = createHuffmanTree(nodes);
         // 创建哈夫曼编码表
-        Map<Byte, String> huffCodes = createHuffmanCodes(tree);
+        Map<Byte, String> huffCodesTable = createHuffmanCodes(tree);
         // 编码表对字符串进行编码
-        byte[] msgCode = encode(getBytesByString(msg), huffCodes);
+        byte[] msgCode = encode(getBytesByString(msg), huffCodesTable);
 
         System.out.println("字符串转字节码数组：" + getBytesByString(msg));
-        System.out.println("编码表：" + huffCodes);
+        System.out.println("编码表：" + huffCodesTable);
 
+        String  decodeResult = decode(msgCode, huffCodesTable);
+        System.out.println("decodeResult:" + decodeResult);
         return msgCode;
     }
+
+    public static String decode(byte[] bytes,Map<Byte,String> huffCodesTable) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            byte b = bytes[i];
+            boolean isLastByte = (i==bytes.length-1);
+            sb.append(byteToBitString(b,isLastByte));
+        }
+        Map<String,Character> byteCharTable = new HashMap<>();
+
+        huffCodesTable.forEach((k, v) -> {
+            byteCharTable.put(v,(char) (((k & 0xFF))));
+        });
+
+        System.out.println("Byte-Char table:"+byteCharTable);
+
+        System.out.println("Msg byte code:"+ sb);
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < sb.length();) {
+            int count = 1;
+            while (true) {
+                String key = sb.substring(i, i+count);
+                Character character = byteCharTable.get(key);
+                if(character == null) {
+                    count++;
+                }else {
+                    result.append(byteCharTable.get(key));
+                    break;
+                }
+            }
+            i = i+count;
+        }
+        return result.toString();
+
+    }
+
+    public static String byteToBitString(byte b,boolean isLastByte) {
+        int temp = b;
+        if(!isLastByte) {
+            temp|=256;
+        }
+        String s = Integer.toBinaryString(temp);
+        return isLastByte?s :s.substring(s.length()-8);
+    }
+
 
     private static byte[] encode(List<Byte> bytes, Map<Byte, String> huffCodes) {
         StringBuilder sb = new StringBuilder();
@@ -50,10 +97,6 @@ public class HuffmanEncoded {
             }
             byteArray[idx] = (byte) Integer.parseInt(byteStr,2);
         }
-
-//        for (int i = 0; i < byteArray.length; i++) {
-//            System.out.println(byteArray[i]);
-//        }
         return byteArray;
     }
 

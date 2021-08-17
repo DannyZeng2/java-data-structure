@@ -25,43 +25,49 @@ public class HuffmanEncoded {
         System.out.println("字符串转字节码数组：" + getBytesByString(msg));
         System.out.println("编码表：" + huffCodesTable);
 
-        String  decodeResult = decode(msgCode, huffCodesTable);
-        System.out.println("decodeResult:" + decodeResult);
+        Byte[] decodeResult = decode(msgCode, huffCodesTable);
+
+
+        System.out.print("decodeResult:");
+        for (Byte aByte : decodeResult) {
+            System.out.print(aByte+" ");
+        }
+
         return msgCode;
     }
 
-    public static String decode(byte[] bytes,Map<Byte,String> huffCodesTable) {
+    public static Byte[] decode(byte[] bytes,Map<Byte,String> huffCodesTable) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
             byte b = bytes[i];
             boolean isLastByte = (i==bytes.length-1);
             sb.append(byteToBitString(b,isLastByte));
         }
-        Map<String,Character> byteCharTable = new HashMap<>();
+        Map<String,Byte> byteStringTable = new HashMap<>();
 
         huffCodesTable.forEach((k, v) -> {
-            byteCharTable.put(v,(char) (((k & 0xFF))));
+            byteStringTable.put(v,k);
         });
 
-        System.out.println("Byte-Char table:"+byteCharTable);
+        System.out.println("Byte-Char table:"+byteStringTable);
 
         System.out.println("Msg byte code:"+ sb);
-        StringBuilder result = new StringBuilder();
+        List<Byte> bytesResult = new ArrayList<>();
         for (int i = 0; i < sb.length();) {
             int count = 1;
             while (true) {
                 String key = sb.substring(i, i+count);
-                Character character = byteCharTable.get(key);
+                Byte character = byteStringTable.get(key);
                 if(character == null) {
                     count++;
                 }else {
-                    result.append(byteCharTable.get(key));
+                    bytesResult.add(byteStringTable.get(key));
                     break;
                 }
             }
             i = i+count;
         }
-        return result.toString();
+        return bytesResult.toArray(new Byte[bytesResult.size()]);
 
     }
 

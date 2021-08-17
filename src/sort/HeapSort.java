@@ -40,9 +40,6 @@ public class HeapSort {
             arr[maxIdx] = temp;
             buildMaxHeap(arr,size,maxIdx);
         }
-
-
-
     }
 
 }

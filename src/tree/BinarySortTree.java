@@ -17,13 +17,15 @@ public class BinarySortTree {
         this.root.add(node);
     }
 
-
     public void ldrPrint() {
         root.ldrPrint();
     }
 
-
-
-
+    public SortTreeNode search(int value) {
+        if(root == null) {
+            throw new RuntimeException("empty tree!!!");
+        }
+        return root.search(value);
+    }
 
 }

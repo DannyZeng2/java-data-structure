@@ -1,7 +1,5 @@
 package tree;
 
-import java.util.Collections;
-
 public class ArrayBinaryTree {
     int[] data;
 

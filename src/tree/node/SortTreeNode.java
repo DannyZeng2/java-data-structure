@@ -66,4 +66,18 @@ public class SortTreeNode {
             right.ldrPrint();
         }
     }
+
+    public SortTreeNode search(int value) {
+        if(this.data == value) {
+            return this;
+        }
+
+        if(this.data > value && this.left !=null) {
+            return this.left.search(value);
+        }if(this.data < value && this.right !=null) {
+            return this.right.search(value);
+        }else {
+            throw new RuntimeException("data not found!!");
+        }
+    }
 }

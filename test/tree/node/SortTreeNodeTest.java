@@ -25,6 +25,8 @@ public class SortTreeNodeTest {
 
         tree.ldrPrint();
 
+        SortTreeNode node = tree.search(5);
+        System.out.println("this data is found:" + node.getData());
 
     }
 }

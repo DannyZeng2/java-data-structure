@@ -80,4 +80,17 @@ public class SortTreeNode {
             throw new RuntimeException("data not found!!");
         }
     }
+
+    public SortTreeNode getParentNode(SortTreeNode targetNode) {
+        if(this.getLeft() == targetNode || this.getRight() == targetNode) {
+            return this;
+        }
+
+        if(this.getData()>targetNode.getData() && this.getLeft() !=null) {
+            return this.getLeft().getParentNode(targetNode);
+        }else if(this.getData()<targetNode.getData() && this.getRight() !=null) {
+            return this.getRight().getParentNode(targetNode);
+        }
+        return null;
+    }
 }

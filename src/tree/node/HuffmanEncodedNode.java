@@ -1,7 +1,5 @@
 package tree.node;
 
-import tree.HuffmanEncoded;
-
 public class HuffmanEncodedNode implements Comparable<HuffmanEncodedNode> {
 
     private Byte data;

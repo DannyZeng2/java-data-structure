@@ -62,7 +62,6 @@ public class ThreadedBinaryTree {
         threadedNode(node.getRightChild());
     }
 
-
     public void vlrPrint() {
         root.vlrPrint();
     }

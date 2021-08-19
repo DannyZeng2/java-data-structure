@@ -1,7 +1,5 @@
 package tree.node;
 
-import javax.swing.*;
-
 public class ThreadedTreeNode {
 
     private int value;

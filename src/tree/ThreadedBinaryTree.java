@@ -31,8 +31,7 @@ public class ThreadedBinaryTree {
             node = node.getRightChild();
         }
     }
-
-
+    
     // 中序线索化二叉树
     public void threadedNode() {
         threadedNode(root);

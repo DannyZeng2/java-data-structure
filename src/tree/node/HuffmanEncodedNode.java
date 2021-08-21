@@ -15,8 +15,6 @@ public class HuffmanEncodedNode implements Comparable<HuffmanEncodedNode> {
         this.weight = weight;
     }
 
-
-
     public Byte getData() {
         return data;
     }

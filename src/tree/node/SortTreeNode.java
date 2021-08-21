@@ -34,7 +34,6 @@ public class SortTreeNode {
     }
 
     public void add(SortTreeNode node) {
-
         if(node == null) {
             return;
         }
@@ -47,22 +46,52 @@ public class SortTreeNode {
             }
 
         } else {
-            if(this.right == null) {
+            if (this.right == null) {
                 this.right = node;
-            }else {
+            } else {
                 this.right.add(node);
             }
         }
 
+        int leftHeight = left == null? 0:left.getHeight();
+        int rightHeight = right == null? 0:right.getHeight();
+        if(leftHeight - rightHeight>1) {
+            rightRotate(); // 右旋转
+        }
+        if(rightHeight - leftHeight>1){
+            leftRotate(); //左旋转
+        }
+    }
+
+    private void rightRotate() {
+        SortTreeNode newRight = new SortTreeNode(data);
+        newRight.right = right;
+        newRight.left = left.right;
+        data= left.data;
+        left= left.left;
+        right = newRight;
+    }
+
+    private void leftRotate() {
+        SortTreeNode newLeft = new SortTreeNode(data);
+        newLeft.left = left;
+        newLeft.right = right.left;
+        data= right.data;
+        right= right.right;
+        left = newLeft;
+    }
+
+    public int getHeight() {
+        return Math.max(left == null ? 0 : left.getHeight(), right == null ? 0 : right.getHeight()) + 1;
     }
 
     // 中序遍历 Inorder Traversal (LDR)
     public void ldrPrint() {
-        if( left!= null) {
+        if (left != null) {
             left.ldrPrint();
         }
-        System.out.println(data);
-        if( right!= null) {
+        System.out.print(data + " ");
+        if (right != null) {
             right.ldrPrint();
         }
     }

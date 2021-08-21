@@ -33,6 +33,12 @@ public class BalanceBinarySortedTreeTest {
 
     }
 
+    /**
+     *         8
+     *      6     9
+     *    5   7
+     *  4
+     */
     @Test
     public void balance_tree_rightRotate(){
         BalanceBinarySortedTree tree = new BalanceBinarySortedTree();
@@ -46,10 +52,35 @@ public class BalanceBinarySortedTreeTest {
         tree.ldrPrint();
     }
 
+    /**
+     *     2
+     *  1     4
+     *      3    5
+     *              6
+     */
     @Test
     public void balance_tree_leftRotate(){
         BalanceBinarySortedTree tree = new BalanceBinarySortedTree();
         int[] nodeValues = new int[] {2,1,4,3,5,6};
+        for (int nodeValue : nodeValues) {
+            SortTreeNode node = new SortTreeNode(nodeValue);
+            tree.add(node);
+        }
+        System.out.println("tree height:" + tree.getHeight());
+        System.out.println("root value: " + tree.getRoot().getData());
+        tree.ldrPrint();
+    }
+
+    /**
+     *       8
+     *    5     9
+     *  4   6
+     *        7
+     */
+    @Test
+    public void balance_tree_double_Rotate(){
+        BalanceBinarySortedTree tree = new BalanceBinarySortedTree();
+        int[] nodeValues = new int[] {8,9,5,4,6,7};
         for (int nodeValue : nodeValues) {
             SortTreeNode node = new SortTreeNode(nodeValue);
             tree.add(node);

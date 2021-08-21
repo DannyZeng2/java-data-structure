@@ -33,6 +33,14 @@ public class SortTreeNode {
         this.right = right;
     }
 
+    private int getLeftHeight() {
+        return left == null? 0:left.getHeight();
+    }
+
+    private int getRightHeight() {
+        return right == null? 0:right.getHeight();
+    }
+
     public void add(SortTreeNode node) {
         if(node == null) {
             return;
@@ -53,13 +61,22 @@ public class SortTreeNode {
             }
         }
 
-        int leftHeight = left == null? 0:left.getHeight();
-        int rightHeight = right == null? 0:right.getHeight();
-        if(leftHeight - rightHeight>1) {
-            rightRotate(); // 右旋转
+
+        if(getLeftHeight() - getRightHeight()>1) {
+            if(left != null && left.getLeftHeight()<left.getRightHeight()) {
+                left.leftRotate(); // 双旋转
+                rightRotate();
+            }else {
+                rightRotate(); // 右旋转
+            }
         }
-        if(rightHeight - leftHeight>1){
-            leftRotate(); //左旋转
+        if(getRightHeight() - getLeftHeight()>1){
+            if(right != null && right.getLeftHeight()>right.getRightHeight()) {
+                left.rightRotate(); // 双旋转
+                leftRotate();
+            }else {
+                leftRotate(); //左旋转
+            }
         }
     }
 

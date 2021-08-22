@@ -40,4 +40,16 @@ public class MyStack {
         return Arrays.toString(arr);
     }
 
+    public boolean isEmpty() {
+        return arr.length == 0;
+    }
+
+    public int peek() {
+        //栈中没有元素
+        if(arr.length==0) {
+            throw new RuntimeException("stack is empty");
+        }
+        return arr[arr.length-1];
+    }
+
 }

@@ -32,5 +32,7 @@ public class GraphTest {
         for(int[] a:graph.getAdjacencyMatrix()) {
             System.out.println(Arrays.toString(a));
         }
+
+        graph.dfs();
     }
 }
